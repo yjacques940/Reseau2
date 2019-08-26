@@ -1,0 +1,10 @@
+enable
+	conf t
+		int FastEthernet0/1
+			no shutdown
+		int FastEthernet0/2
+			no shutdown
+		int range fa0/3 - 24
+			shutdown
+	exit
+exit
