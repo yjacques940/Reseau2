@@ -1,0 +1,17 @@
+enable
+	conf t
+		vlan 10
+		vlan 20
+		int range fa0/1 - 2
+			no shut
+			switchport mode access
+			switchport access vlan 20
+		int range fa0/3 - 4
+			no shut
+			switchport mode access
+			switchport access vlan 10
+		int range fa0/5 - 24
+			shutdown
+		exit
+	exit
+exit
