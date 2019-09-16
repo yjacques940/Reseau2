@@ -56,3 +56,64 @@ enable
 	copy running-config startup-config
 	
 exit
+
+//bla bla
+
+enable 
+	conf t 
+		vlan 10
+			name VLAN10
+		vlan 20
+			name VLAN20
+		int range g0/2 - 13
+			shutdown
+		int range g0/15 - 22
+			shutdown
+		int g0/14
+			no shut
+		int g0/23
+			no shut
+			switchport access vlan 10
+		int g0/24
+			no shut
+			switchport access vlan 20
+		int g0/1 
+			no shut
+			switchport mode trunk
+			switchport trunk allowed vlan 10,20
+		exit
+	exit
+exit
+
+
+//routeur IRL
+
+enable
+	conf t
+		int fa0/0
+			no shut
+		int fa0/0.1
+			encapsulation dot1q 10
+			ip address 192.168.10.1 255.255.255.0
+			no shutdown
+		int fa0/0.2
+			encapsulation dot1q 20
+			ip address 192.168.20.1 255.255.255.0
+			no shutdown
+		exit
+		no ip dhcp pool dhcp10
+		no ip dhcp pool dhcp20
+		ip dhcp pool dhcp10
+			no default-router
+			default-router 192.168.10.1 
+			network 192.168.10.0 255.255.255.0
+		ip dhcp pool dhcp20
+			no default-router
+			default-router 192.168.20.1 
+			network 192.168.20.0 255.255.255.0
+		exit
+		ip dhcp excluded-address 192.168.10.1
+		ip dhcp excluded-address 192.168.20.1
+		ip routing
+		exit
+exit
