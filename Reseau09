@@ -39,3 +39,30 @@ POP3 -> raiponce
  permit tcp host (...) eq 1119 201.104.99.0 0.0.0.255
  
  On ne peut pas utiliser established avec icmp on peut juste le mettre avec tcp
+ 
+ 
+ 
+ /CONFIGURATION DU NAT
+ enable 
+	conf t
+	no access-list 1
+	access-list 1 permit 192.168.10.0 0.0.0.255
+			int g0/2
+			no shut
+			ip address 192.168.10.1 255.255.255.0
+			ip nat inside
+			int g0/1
+			no shut
+			ip address 201.104.98.104 255.255.255.0
+			ip nat outside
+		exit
+		ip dhcp pool interne
+			no default-router 
+			default-router 192.168.10.1
+			network 192.168.10.1 255.255.255.0
+		exit
+		ip nat pool Martin 201.104.98.104 201.104.98.104 netmask 255.255.255.0
+		ip nat inside source list 1 pool Martin overload
+	ip routing
+	exit
+exit
