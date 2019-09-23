@@ -1,0 +1,41 @@
+//Routeur
+
+enable 
+	conf t
+			no ip access-list extended 101
+			ip access-list extended 101
+				permit tcp any eq 80 201.104.99.0 0.0.0.255 established
+				permit tcp any eq 25 201.104.99.0 0.0.0.255 established
+				permit tcp any eq 110 201.104.99.0 0.0.0.255 established
+				permit tcp any eq 1119 201.104.99.0 0.0.0.255 established
+				permit icmp any 201.104.99.0 0.0.0.255
+			int g0/2
+			no shut
+			ip address 201.104.99.1 255.255.255.0
+			int g0/1
+			no shut
+			ip address 201.104.98.104 255.255.255.0
+			ip access-group 101 in
+		exit
+		ip dhcp pool interne
+			no default-router 
+			default-router 201.104.99.1
+			network 201.104.99.0 255.255.255.0
+		exit
+	ip routing
+	exit
+exit
+
+pour configurer le serveur: 
+Aller dans config=> settings => mettre le gateway la meme adresse que le routeur
+aller dans FA0 et mettre une adresse réseau du sous réseau
+
+Page web -> demandé
+jeux -> demandé
+SMTP -> raiponce
+POP3 -> raiponce
+
+//Si on enlève le established, on va vérifier ce qu'on recoit seulement du serveur 
+ permit tcp host (...) eq 1119 201.104.99.0 0.0.0.255
+ 
+ On ne peut pas utiliser established avec icmp on peut juste le mettre avec tcp
