@@ -28,3 +28,37 @@ deny ip (ip bloque tout) host 192.168.40.240 any
 
 #7 : On pourrait l'ajouter près des autres permissions du sous réseau .10.0
 	pour permettre de les regrouper
+	
+	
+	2.2 :
+	
+#1: Il ne peut pas parce qu'a cause de established, ce doit être le président qui démarre la 
+conversation pour qu'il y 'ait' une conversation 
+
+Si on enlève established, là le pirate aurait accès à tout
+
+#2 : Oui il peut, et il pourra même si ce n'est pas established
+
+#3 : Oui il le peut, le port n'est pas vérifié
+
+#4 : On peut prendre la même liste, mais il faut changer les numéros d'ip en enlevant le mot HOST et ajouter
+le masque (0.0.0.255
+
+#5 : 
+
+
+	2.3 :
+	
+#1 : Bloquer les calls telnet
+
+
+2.4  : 
+1 : En sortie sur F0/2
+2 : N'importe ou, au début de préférence (ex: permit ip 192.168.40.0 0.0.0.255 host 192.168.30.30)
+3 : 
+
+
+2.5 : 
+1 : Le masque est à l'envers dans network 255.255.255.0
+2 : 192.168.10.4
+3 : On a un appareil avec une adresse statique (imprimante)
