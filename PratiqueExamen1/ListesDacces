@@ -1,0 +1,30 @@
+Exercices liste d'accès
+#1 : Oui, le numéro de la liste d'accès doit être plus petit que 100
+-Liste standard ne peut pas filtrer par numéro de port
+(juste l'adresse de source), donc aussi,on ne peut pas etre en standard puisqu'on filtre par ports
+
+#2 : Permettre tout ce qui provient de n'importe ou, 
+mais peut répondre seulement au port 53 qui sont des requêtes(DNS)
+
+#3 : Oui, il ne passe pas par le routeur
+
+#4 : http = TCP port 80 , tcp est aussi du ip
+src: 50.50
+dst: 30.30
+
+permit ip 192.168.50.0 0.0.0.255 any
+Oui il peut
+
+#5 : 
+src: 40.240
+dst: 30.30
+http/tcp/ip : 80
+
+ permit tcp 192.168.40.0 0.0.0.255 host 192.168.30.30 eq 80
+ Oui le pirate peut accéder au serveur
+ 
+#6 : La placer avant l'adresse qui autorise le sous réseau .40.0
+deny ip (ip bloque tout) host 192.168.40.240 any
+
+#7 : On pourrait l'ajouter près des autres permissions du sous réseau .10.0
+	pour permettre de les regrouper
