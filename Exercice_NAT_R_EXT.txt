@@ -1,0 +1,28 @@
+enable
+    configure terminal
+        no access list extended 101
+        access list extended 101
+            ! Les paquets qui reviennent d'un client FTP quand le serveur
+            ! transmet un fichier vers celui-ci.
+            permit tcp any host 207.125.32.2 eq 20 established
+            ! Les connexions vers le serveur FTP
+            permit tcp any host 207.125.32.2 eq 21
+            ! Les réponses aux requêtes DNS envoyées par le serveur FTP au serveur
+            ! DNS
+            permit udp host 8.8.8.8 eq 53 207.125.32.2 0.0.0.255
+            ! Les connexions au serveur WEB
+            permit tcp any host 207.125.32.3 eq 80
+            ! Tous les paquets IP qui se dirigent vers le routeur interne
+            permit ip any host 207.125.32.4
+        exit
+        interface f0/0
+            no shutdown
+            ip address 207.125.32.1 255.255.255.0
+        interface f0/1
+            no shutdown
+            ip access-group 101 in
+            ip address 204.145.89.45 255.255.255.0
+        exit
+        ip routing
+    exit
+exit
