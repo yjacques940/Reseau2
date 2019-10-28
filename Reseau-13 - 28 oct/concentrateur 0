@@ -1,0 +1,20 @@
+enable
+	conf t
+		vlan 10
+		vlan 30
+	exit
+	interface fa0/1
+		no shut
+		switchport mode access
+		switchport access vlan 10
+	interface fa0/2
+		no shut
+		switchport mode access
+		switchport access vlan 20
+	interface fa0/3
+		no shut
+		switchport mode trunk
+		switchport trunk allowed vlan 10,30
+	interface range fa0/4 - 24
+		shutdown
+exit
