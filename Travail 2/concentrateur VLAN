@@ -1,0 +1,36 @@
+enable 
+	conf t
+	vlan 10
+		name Servers
+	vlan 20
+		name AlphaBravo
+	vlan 30
+		name Charlie
+	vlan 40
+		name Employees
+	exit
+	interface range fa0/1 - 2
+		no shutdown
+		switchport mode access
+		switchport access vlan 20
+	interface fa0/3
+		no shutdown
+		switchport mode access
+		switchport access vlan 30
+	interface fa0/4
+		no shutdown
+		switchport mode access
+		switchport access vlan 40
+	interface range fa0/5 - 20
+		shutdown
+	interface range fa0/21 - 24
+		no shutdown
+		switchport mode access
+		switchport access vlan 10
+	interface g0/1
+		no shutdown
+		switchport mode trunk
+		switchport trunk allowed vlan all
+	exit
+	copy running-config startup-config
+exit
