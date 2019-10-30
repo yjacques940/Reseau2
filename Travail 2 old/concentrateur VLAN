@@ -23,24 +23,8 @@ enable
 		switchport access vlan 40
 	interface range fa0/5 - 20
 		shutdown
-	interface fa0/21
+	interface range fa0/21 - 24
 		no shutdown
-		ip address 192.168.10.40
-		switchport mode access
-		switchport access vlan 10
-	interface fa0/22
-		no shutdown
-		ip address 192.168.10.30
-		switchport mode access
-		switchport access vlan 10
-	interface fa0/23
-		no shutdown
-		ip address 192.168.10.20
-		switchport mode access
-		switchport access vlan 10
-	|interface fa0/24
-		no shutdown
-		ip address 192.168.10.10
 		switchport mode access
 		switchport access vlan 10
 	interface g0/1
