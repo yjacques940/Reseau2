@@ -1,0 +1,18 @@
+Faire un serveur DNS
+*Laisser passer les requêtes DNS dans les access list
+
+1- dans le serveur, aller sur Services, DNS et mettre à ON
+2- mettre un nom de machine 
+3- donner une adresse de réseau 
+4- cliquer sur ajouter
+5- aller sur l'ordinateur, configurer l'adresse de dns pour l'adresse du serveur
+6- aller dans le web browser et ecrire le nom de l'adresse (Ex: server1)
+7- 
+8-
+9-
+10-
+11-
+12-
+13-
+14-
+15-
