@@ -1,0 +1,59 @@
+enable
+  configure terminal
+    vlan 10
+      name Proprio
+    vlan 20
+      name Admin
+    vlan 30
+      name Prod
+    vlan 40
+      name RD
+    vlan 50
+      name Info
+    vlan 60
+      name Servers
+  exit
+  !Proprio
+  interface fa0/1
+    no shutdown
+    switchport mode access
+    switchport access vlan 10
+  !Admin
+  interface fa0/2
+    no shutdown
+    switchport mode access
+    switchport access vlan 20
+  !Prod
+  interface fa0/3
+    no shutdown
+    switchport mode access
+    switchport access vlan 30
+  !RD
+  interface fa0/4
+    no shutdown
+    switchport mode access
+    switchport access vlan 40
+  !Info
+  interface fa0/5
+    no shutdown
+    switchport mode access
+    switchport access vlan 50
+  !Servers
+  interface range fa0/6 - 10
+    no shutdown
+    switchport mode access
+    switchport access vlan 60
+  !Ports non-utilisés
+  interface range fa0/11 - 23
+    shutdown
+  !Connexion au routeur
+  !Pour permettre à tout les vlan de se rendre au routeur
+  interface fa0/24
+    no shutdown
+    switchport mode trunk
+    switchport trunk allowed vlan all
+  exit
+  exit
+  copy running-config startup-config
+
+exit

@@ -1,4 +1,4 @@
-enable 
+enable
 	conf t
 	vlan 10
 		name Servers
@@ -38,7 +38,7 @@ enable
 		ip address 192.168.10.20
 		switchport mode access
 		switchport access vlan 10
-	|interface fa0/24
+	interface fa0/24
 		no shutdown
 		ip address 192.168.10.10
 		switchport mode access
