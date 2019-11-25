@@ -6,3 +6,7 @@ Production: 192.168.30.0
 Recherche et développement: 192.168.40.0
 Informaticiens: 192.168.50.0
 Serveurs: 192.168.60.0
+
+DNS: 192.168.60.10
+WEB: 192.168.60.20
+ADMIN: 192.168.60.30
