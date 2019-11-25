@@ -1,0 +1,32 @@
+enable
+  configure terminal
+    interface fa0/0
+      ip nat inside
+      no shutdown
+    !Proprio
+    interface fa0/0.1
+      no shutdown
+      encapsulation dot1q
+      ip address 192.168.11.0
+      ip access-group 111 in
+    !Admin
+    interface fa0/0.2
+      no shutdown
+      encapsulation dot2q
+      ip address 192.168.21.0
+      ip access-group 121 in
+    !Prod
+    interface fa0/0.3
+      no shutdown
+      encapsulation dot3q
+      ip address 192.168.31.0
+      ip access-group 131 in
+    interface fa0/1
+      ip address 20.20.20.2 255.255.255.0
+      ip nat outside
+      no shutdown
+    exit
+    ip nat pool NatPool 20.20.20.2 20.20.20.2 netmask 255.255.255.0
+    ip nat inside source list 11 pool NatPool overload
+  exit
+exit

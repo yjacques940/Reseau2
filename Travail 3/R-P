@@ -1,0 +1,26 @@
+enable
+  configure terminal
+    interface fa0/0
+      ip nat inside
+      no shutdown
+    !Admin
+    interface fa0/0.1
+      no shutdown
+      encapsulation dot1q
+      ip address 192.168.12.0
+      ip access-group 112 in
+    interface fa0/1
+      ip address 20.20.20.3 255.255.255.0
+      ip nat outside
+      no shutdown
+    ip dhcp pool Proprio
+      no default-router
+      no dns-server
+      network 192.168.12.0 255.255.255.0
+      default-router 192.168.12.1
+      dns-server 192.168.60.10
+    exit
+    ip nat pool NatPool 20.20.20.3 20.20.20.3 netmask 255.255.255.0
+    ip nat inside source list 12 pool NatPool overload
+  exit
+exit
