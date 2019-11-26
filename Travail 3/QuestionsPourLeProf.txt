@@ -1,0 +1,3 @@
+Mettre le 'out' dans les permissions?
+Mettre le masque sur une adresse statique
+Mettre any entre le host et l'adresse de sous réseau
