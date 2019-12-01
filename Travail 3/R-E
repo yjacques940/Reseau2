@@ -56,13 +56,13 @@ enable
     !Admin
     interface fa0/0.2
       no shutdown
-      encapsulation dot2q
+      encapsulation dot1q
       ip address 192.168.21.0
       ip access-group 121 in
     !Prod
     interface fa0/0.3
       no shutdown
-      encapsulation dot3q
+      encapsulation dot1q
       ip address 192.168.31.0
       ip access-group 131 in
 	interface fa0/0.6
