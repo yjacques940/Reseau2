@@ -1,5 +1,49 @@
 enable
   configure terminal
+	no ip access-list extended 111
+    ip access-list extended 111
+	  permit tcp 192.168.11.0 0.0.0.255 host 20.20.20.3
+      permit tcp 192.168.11.0 0.0.0.255 192.168.20.0 0.0.0.255
+      permit tcp 192.168.11.0 0.0.0.255 192.168.30.0 0.0.0.255
+      permit tcp 192.168.11.0 0.0.0.255 192.168.40.0 0.0.0.255
+      permit tcp 192.168.11.0 0.0.0.255 192.168.50.0 0.0.0.255
+      permit tcp 192.168.11.0 0.0.0.255 192.168.60.0 0.0.0.255
+	exit
+	no ip access-list extended 121
+    ip access-list extended 121
+      permit tcp 192.168.21.0 0.0.0.255 host 20.20.20.3
+      permit tcp 192.168.21.0 0.0.0.255 host 192.168.60.30 eq 80
+      permit udp 192.168.21.0 0.0.0.255 host 192.168.60.10 eq 53
+      permit tcp 192.168.21.0 0.0.0.255 host 192.168.60.20 eq 25
+      permit tcp 192.168.21.0 0.0.0.255 host 192.168.60.20 eq 110
+    exit
+    no ip access-list extended 131
+    ip access-list extended 131
+      permit tcp 192.168.31.0 0.0.0.255 host 20.20.20.3
+      permit tcp 192.168.31.0 0.0.0.255 host 192.168.60.20 eq 25
+      permit tcp 192.168.31.0 0.0.0.255 host 192.168.60.20 eq 110
+      permit udp 192.168.31.0 0.0.0.255 host 192.168.60.10 eq 53
+      permit tcp 192.168.31.0 0.0.0.255 host 192.168.60.40 eq 80
+    exit
+	no ip access-list extended 161
+	ip access-list extended 161
+      permit tcp host 20.20.20.3 192.168.11.0 0.0.0.255 established
+      permit tcp 192.168.20.0 0.0.0.255 192.168.11.0 0.0.0.255 established
+      permit tcp 192.168.30.0 0.0.0.255 192.168.11.0 0.0.0.255 established
+      permit tcp 192.168.40.0 0.0.0.255 192.168.11.0 0.0.0.255 established
+      permit tcp 192.168.50.0 0.0.0.255 192.168.11.0 0.0.0.255 established
+      permit tcp 192.168.60.0 0.0.0.255 192.168.11.0 0.0.0.255 established
+      permit tcp host 20.20.20.3 192.168.11.0 0.0.0.255 established
+      permit tcp host 192.168.60.30 192.168.11.0 0.0.0.255 eq 80 established
+      permit udp host 192.168.60.10 eq 53 192.168.21.0 0.0.0.255
+      permit tcp host 192.168.60.20 192.168.21.0 0.0.0.255 eq 25 established
+      permit tcp host 192.168.60.20 192.168.21.0 0.0.0.255 eq 110 established
+      permit tcp host 20.20.20.3 192.168.31.0 0.0.0.255 established
+      permit tcp host 192.168.60.20 192.168.31.0 0.0.0.255 eq 25 established
+      permit tcp host 192.168.60.20 192.168.31.0 0.0.0.255 eq 110 established
+      permit udp host 192.168.60.10 eq 53 192.168.31.0 0.0.0.255
+      permit tcp host 192.168.60.40 192.168.31.0 0.0.0.255 eq 80 established
+    exit
     interface fa0/0
       ip nat inside
       no shutdown
@@ -21,6 +65,11 @@ enable
       encapsulation dot3q
       ip address 192.168.31.0
       ip access-group 131 in
+	interface fa0/0.6
+      no shutdown
+      encapsulation dot1q
+      ip address 192.168.60.0
+      ip access-group 161 in
     interface fa0/1
       ip address 20.20.20.2 255.255.255.0
       ip nat outside
