@@ -16,9 +16,7 @@ enable
     no shutdown
     switchport mode trunk
     switch trunk allowed vlan all
-
   exit
   exit
   copy running-config startup-config
-
 exit
