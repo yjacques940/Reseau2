@@ -26,12 +26,12 @@ enable
     !Admin
     interface fa0/0.1
       no shutdown
-      encapsulation dot1q
+      encapsulation dot1q 12
       ip address 192.168.12.0
       ip access-group 112 in
 	interface fa0/0.6
 	  no shutdown
-	  encapsulation dot1q
+	  encapsulation dot1q 62
 	  ip address 192.168.60.0
 	  ip access-group 162 in
     interface fa0/1

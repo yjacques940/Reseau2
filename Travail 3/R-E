@@ -50,32 +50,43 @@ enable
     !Proprio
     interface fa0/0.1
       no shutdown
-      encapsulation dot1q
-      ip address 192.168.11.0
+      encapsulation dot1q 11
+	  ip address 192.168.11.0 255.255.255.0
       ip access-group 111 in
     !Admin
     interface fa0/0.2
       no shutdown
-      encapsulation dot1q
-      ip address 192.168.21.0
+      encapsulation dot1q 21
+      ip address 192.168.21.0 255.255.255.0
       ip access-group 121 in
     !Prod
     interface fa0/0.3
       no shutdown
-      encapsulation dot1q
-      ip address 192.168.31.0
+      encapsulation dot1q 31
+      ip address 192.168.31.0 255.255.255.0
       ip access-group 131 in
 	interface fa0/0.6
       no shutdown
-      encapsulation dot1q
-      ip address 192.168.60.0
+      encapsulation dot1q 61
+      ip address 192.168.61.0 255.255.255.0
       ip access-group 161 in
     interface fa0/1
+	  no shutdown
       ip address 20.20.20.2 255.255.255.0
       ip nat outside
-      no shutdown
+	interface fa1/0
+	  no shutdown
+	  ip address 172.188.40.2 255.255.255.0
+	interface tunnel 0
+	  no shutdown
+	  ip address 192.168.70.2 255.255.255.0
+	  tunnel destination 172.148.0.1
+	  tunnel source fa1/0
+	  tunnel mode gre ip
     exit
     ip nat pool NatPool 20.20.20.2 20.20.20.2 netmask 255.255.255.0
     ip nat inside source list 11 pool NatPool overload
+	ip routing
+	ip route 192.168.70.0 255.255.255.0 192.168.70.1
   exit
 exit
