@@ -1,0 +1,21 @@
+enable
+	conf t
+	no ip access-list extended 101
+	ip access-list extended 101
+		permit tcp host 192.168.0.2 host 192.168.1.2 eq 80
+		permit tcp host 192.168.1.2 host 192.168.0.2 eq 80
+		permit tcp host 192.168.1.2 eq 80 host 192.168.0.2 established
+		permit tcp host 192.168.0.2 eq 80 host 192.168.1.2 established
+	exit
+	int fa0/0
+		no shut
+		ip address 192.168.0.1 255.255.255.0
+	int fa0/1
+		no shut
+		ip address 192.168.1.1 255.255.255.0
+		ip access-group 101 in
+		ip access-group 101 out
+	exit
+	ip routing
+	exit
+exit
