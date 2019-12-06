@@ -51,24 +51,24 @@ enable
     interface fa0/0.1
       no shutdown
       encapsulation dot1q 11
-	  ip address 192.168.11.0 255.255.255.0
+	  ip address 192.168.11.1 255.255.255.0
       ip access-group 111 in
     !Admin
     interface fa0/0.2
       no shutdown
       encapsulation dot1q 21
-      ip address 192.168.21.0 255.255.255.0
+      ip address 192.168.21.1 255.255.255.0
       ip access-group 121 in
     !Prod
     interface fa0/0.3
       no shutdown
       encapsulation dot1q 31
-      ip address 192.168.31.0 255.255.255.0
+      ip address 192.168.31.1 255.255.255.0
       ip access-group 131 in
 	interface fa0/0.6
       no shutdown
       encapsulation dot1q 61
-      ip address 192.168.61.0 255.255.255.0
+      ip address 192.168.61.1 255.255.255.0
       ip access-group 161 in
     interface fa0/1
 	  no shutdown
